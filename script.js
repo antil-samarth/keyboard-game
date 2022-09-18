@@ -42,6 +42,15 @@ document.getElementById('start').addEventListener('click', () => {
 		}
 	})
 
+	hWord = letters.map(function (letter) {
+		if (letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u'){
+			return 0
+		} else {
+			
+			return letter
+		}
+	})
+
     hWordElement.innerHTML = displayWord.join(''); 
 
     messageElement.innerText = '';
@@ -61,24 +70,21 @@ document.getElementById('start').addEventListener('click', () => {
 
 if (startFlag) {
 	typedValueElement.addEventListener('input', function _listener() {
-	    const currentLetter = letters[letterIndex];
 	    const typedValue = typedValueElement.value;
-		console.log(currentLetter);
-		console.log(letterIndex);
-		if (letters.includes(typedValue)) {
-			letters.forEach(x => {
+		if (hWord.includes(typedValue)) {
+			hWord.forEach(x => {
 				if (typedValue === x) {
 					
-					i = letters.indexOf(x);
+					i = hWord.indexOf(x);
 					displayWord[i] = `<span>${x} </span>`;
 					hWordElement.innerHTML = displayWord.join('');
 
-					letters[i] = 0;
+					hWord[i] = 0;
 				} 
 			});
 			
 			isDone = true;
-			letters.forEach(d => {
+			hWord.forEach(d => {
 				if (d !== 0) {
 					isDone = false;
 				}
@@ -133,5 +139,9 @@ if (startFlag) {
 			}
 			console.log(errorCount);
 	    }
+
+		setTimeout(() => {
+			typedValueElement.value = '';
+		}, 20);
 	}, true);
 }
