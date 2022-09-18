@@ -21,3 +21,12 @@ p {
     position: relative;
     left: 30%;
 }
+
+.error {
+    background-color: lightcoral;
+    border: red;
+}
+
+.invisible{
+    opacity: 0;
+}
